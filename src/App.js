@@ -4,7 +4,7 @@ import Unidades from './middleware/Unidades';
 import ConfiguracionesUnidades from './middleware/ConfiguracionesUnidades';
 import Chart from './middleware/chart';
 
-import request from "superagent";
+
 
 var unidades = new Unidades();
 var usr_unit = new ConfiguracionesUnidades();
@@ -16,22 +16,8 @@ var eje_y = [65, 59, 80, 81, 56, 55, 40];
 
 
 function App() {
-
-  (async () => {
-    try {
-      const res = await request.get('http://localhost:3000/api/unit_config/1');
-      var response = JSON.parse(res.text);
-      for(let item of response){
-        usr_unit.ds_Longitud = item.ds_lenght;
-        usr_unit.ds_Presion = item.ds_pressure;
-        usr_unit.ds_Temperatura = item.ds_temperature;
-      }
-      console.log(usr_unit);
-    } catch (err) {
-      console.error(err);
-    }
-  })();
-    
+  usr_unit.loadConfig();
+  console.log(usr_unit);
 
   const [kilometro, setKilometro] = useState(0);
   const [metro, setMetro] = useState(0);
