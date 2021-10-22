@@ -5,10 +5,12 @@ import ConfiguracionesUnidades from './middleware/ConfiguracionesUnidades';
 import Chart from './middleware/chart';
 
 
-
+// Declaracion de los objetos que manejan la conversion de unidades
 var unidades = new Unidades();
 var usr_unit = new ConfiguracionesUnidades();
 var old_unit = new ConfiguracionesUnidades();
+
+// Carga de datos desde la base de datos
 usr_unit.loadConfig(1);
 
 var x = [30, 35, 40, 58, 80, 81, 90];
@@ -17,6 +19,7 @@ var y = [65, 59, 80, 81, 56, 55, 13];
 
 function App() {  
     
+  // Declaracion de los hooks usados por la vista
   const [eje_x, setEje_x] = useState(x);
   const [eje_y, setEje_y] = useState(y);
   const [tipo, setTipo] = useState(0);
@@ -45,7 +48,7 @@ function App() {
                   },[tipo, tipo2, valor2, tipo3, valor3]);
 
   
-
+  // Eventos para cambiar el valor de el cuadro de texto
   function handleTotalChange(e){
     if (!isNaN(e.target.value)) {
       if(e.target.id === "input1"){ 
@@ -67,6 +70,7 @@ function App() {
     }
   };
   
+  //Eventos para cambiar la unidad de medida y transformar los valores a la nueva unidad
   function changeEvent(event){
     setTipo(event.target.value);
     x = unidades.transformar_lista_longitud(x, old_unit.ds_Longitud, usr_unit.ds_Longitud);
@@ -95,6 +99,7 @@ function App() {
     usr_unit.saveConfig("1");
   }
 
+  // Declaracion de la vista
   const app = (
     <div className="App">
       <h1>Convertidor de unidades</h1>
@@ -149,7 +154,6 @@ function App() {
       <input id = "input3" onChange={handleTotalChange3} value={total3} />
       <hr/>
       <Chart id = "Chart" labels = {eje_x} data = {eje_y} label ={usr_unit.ds_Longitud +" x "+usr_unit.ds_Presion}/>
-      
     </div>
   );
   

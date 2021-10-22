@@ -5,13 +5,14 @@ class Configuraciones_Unidades {
     ds_Presion ;
     ds_Temperatura; 
 
-
+  // Constructor de la clase, por defecto establece las unidades en el sistema de unidades de campo
     constructor(){
       this.ds_Longitud = "ft";
       this.ds_Presion = "PSI";
       this.ds_Temperatura = "F";
     }
 
+    // Funcion encargada de conectarse con la API y leer las configuraciones del usuario
     loadConfig(user_id){
         (async () => {
             try {
@@ -28,6 +29,7 @@ class Configuraciones_Unidades {
           })()
     }
 
+    // Funcion encargada de conectarse con la API y modificar las configuraciones del usuario
     saveConfig(user_id){
       (async () => {
         try {

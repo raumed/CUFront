@@ -4,6 +4,7 @@ class Unidades {
     ds_Presion ;
     ds_Temperatura;
 
+    //Constructor de la clase donde se definen las unidades de medida que usara el sistema y sus equivalencias
     constructor(){
         this.ds_Longitud = new Map([
             ["Km", 0.0003048],
@@ -30,6 +31,8 @@ class Unidades {
             ["C", -17.2222],
             ["F", 1]]);
     }
+
+    // Procedimientos de transformacion de unidades de forma individual
 
     transformar_unidad_longitud(valor,  unidad_inicio, unidad_fin){
         if ( unidad_inicio === unidad_fin){
@@ -87,6 +90,7 @@ class Unidades {
             }
         }
     }
+    // Procedimiento que retorna la clave de la unidad una vez ingresada su equivalencia
     get_clave_longitud(valor){
         var key_list = this.ds_Longitud.keys();
         var value_list = this.ds_Longitud.values();
@@ -99,6 +103,9 @@ class Unidades {
             }
         }
     }
+
+     // Procedimientos de transformacion de unidades en bloques de datos
+
     transformar_lista_longitud(lista, unidad_inicio, unidad_fin){
         if ( unidad_inicio === unidad_fin){
             return lista
