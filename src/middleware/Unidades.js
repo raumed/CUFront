@@ -32,7 +32,9 @@ class Unidades {
     }
 
     transformar_unidad_longitud(valor,  unidad_inicio, unidad_fin){
-
+        if ( unidad_inicio === unidad_fin){
+            return valor
+        }
         if(unidad_inicio === "ft"){
             return (valor * this.ds_Longitud.get(unidad_fin));
         }else{
@@ -45,6 +47,9 @@ class Unidades {
     }
 
     transformar_unidad_presion(valor,  unidad_inicio,  unidad_fin){
+        if ( unidad_inicio === unidad_fin){
+            return valor
+        }
         if(unidad_inicio === "PSI"){
             return (valor * this.ds_Presion.get(unidad_fin));
         }else{
@@ -57,6 +62,9 @@ class Unidades {
     }
 
     transformar_unidad_temperatura(valor, unidad_inicio, unidad_fin){
+        if ( unidad_inicio === unidad_fin){
+            return valor;
+        }
         if(unidad_inicio === "C"){
             if(unidad_fin === "K"){
                 return(valor + 273.15);
@@ -92,27 +100,35 @@ class Unidades {
         }
     }
     transformar_lista_longitud(lista, unidad_inicio, unidad_fin){
+        if ( unidad_inicio === unidad_fin){
+            return lista
+        }
         var listaFinal = [];
         lista.forEach(element =>{
-            element = this.transformar_unidad_longitud(element, unidad_inicio, unidad_fin)
-            listaFinal.push(element);
+            listaFinal.push(this.transformar_unidad_longitud(element, unidad_inicio, unidad_fin));
             });
         return(listaFinal);
     }
     
     transformar_lista_presion(lista, unidad_inicio, unidad_fin){
+        if ( unidad_inicio === unidad_fin){
+            return lista
+        }
         var listaFinal = [];
         lista.forEach(element =>{
-            element = this.transformar_unidad_presion(element, unidad_inicio, unidad_fin)
+            element = this.transformar_unidad_presion(element, unidad_inicio, unidad_fin);
             listaFinal.push(element);
             });
         return(listaFinal);
     }
 
     transformar_lista_temperatura(lista, unidad_inicio, unidad_fin){
+        if ( unidad_inicio === unidad_fin){
+            return lista
+        }
         var listaFinal = [];
         lista.forEach(element =>{
-            element = this.transformar_unidad_temperatura(element, unidad_inicio, unidad_fin)
+            element = this.transformar_unidad_temperatura(element, unidad_inicio, unidad_fin);
             listaFinal.push(element);
             });
         return(listaFinal);

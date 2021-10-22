@@ -1,33 +1,29 @@
-import React, {Component} from "react";
+import React from "react";
 import {Line} from "react-chartjs-2";
 
-class Chart extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            chartData:{
-                labels: [65, 59, 80, 81, 56, 55, 40],
+const Chart = (props) =>{   
+    return(
+    <div className = "Chart">
+        <Line
+            data = {{
+                labels: props.labels,
                 datasets:[{
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    data: props.data,
+                    label: props.label,
                     fill: false,
                     borderColor: 'rgb(75, 192, 192)',
                     tension: 0.1
                 }]
-            }
-        }
-    }
-    render(){
-        return(
-            <div className = "Chart">
-                <Line
-                    data = {this.state.chartData}
-                    options ={{
-                        maintainAspectRatio: false
+            }}
+            height ={400}
+            width = {600}
+            options ={{
+                maintainAspectRatio: false
 
-                    }}
-                />
-            </div>
-        )
-    }
+            }}
+        />
+    </div>
+    )
 }
+
 export default Chart;
